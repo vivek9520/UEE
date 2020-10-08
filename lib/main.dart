@@ -75,7 +75,9 @@ class MyApp extends StatelessWidget {
           ],
         ),
       ),
-      body: Search(),
+      body: SizedBox(
+        child: Search(),
+      ),
     );
   }
 }

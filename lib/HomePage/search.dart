@@ -3,12 +3,13 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:slimy_card/slimy_card.dart';
 import 'package:expansion_card/expansion_card.dart';
 import 'package:sliding_card/sliding_card.dart';
-
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 
 class Search extends StatelessWidget {
   
   List <String> list = ["1","2","3"];
+  final otpController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +89,114 @@ class Search extends StatelessWidget {
                           child: Container(
                             width: 400,
                             height: 100,
-                            child: Text("Data"),
+                            child: Center(child: Container(
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(10.0),//or 15.0
+                                          child: Container(
+                                            height: 80.0,
+                                            width: 80.0,
+                                            color: Colors.blue,
+                                            child: Image.asset('assets/images/new3.jpg',
+                                            fit: BoxFit.cover,),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: Row(
+
+                                          children: [
+                                            Column(
+                                              children: [
+                                                Text("hello"), 
+                                                Text("eee"),
+                                              ],
+                                            ),
+
+                                            Column(
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.fromLTRB(100,10,0,0),
+                                                  child: OutlineButton(
+                                                    color: Colors.blue[300],
+                                                    onPressed: () {
+                                                        return Alert(
+                                                            context: context,
+                                                            title: "OTP",
+                                                            content: Column(
+                                                              children: <Widget>[
+                                                                TextField(
+                                                                  decoration: InputDecoration(
+                                                                    icon: Icon(Icons.phone),
+                                                                    labelText: 'Enter  OTP',
+                                                                  ),
+                                                                  keyboardType: TextInputType.number,
+                                                                  controller: otpController,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            buttons: [
+                                                              DialogButton(
+                                                                onPressed: () {
+                                                                  print(otpController.text);
+                                                                  if(otpController.text.isEmpty){
+                                                                    Navigator.pop(context);
+                                                                      print("Empty");
+                                                                      return Alert(
+                                                                        context: context,
+                                                                        type: AlertType.error,
+                                                                        title: "RFLUTTER ALERT",
+                                                                        desc: "Flutter is more awesome with RFlutter Alert.",
+                                                                        buttons: [
+                                                                          DialogButton(
+                                                                            child: Text(
+                                                                              "COOL",
+                                                                              style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                            ),
+                                                                            onPressed: () => Navigator.pop(context),
+                                                                            width: 120,
+                                                                          )
+                                                                        ],
+
+                                                                      ).show();
+
+                                                                  }
+                                                                  return Alert(
+                                                                    context: context,
+                                                                    title: "Success",
+                                                                    desc: "Booking Confirmed",
+                                                                    image: Image.asset("assets/images/sucess.webp"),
+                                                                  ).show();
+                                                                  Navigator.pop(context);
+
+                                                                },
+                                                                child: Text(
+
+                                                                  "Booking Confirmed",
+                                                                  style: TextStyle(color: Colors.white, fontSize: 20),
+
+                                                                ),
+                                                              )
+                                                            ]).show();
+                                                    },
+                                                    child: Text('Book'),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+
+                                      )
+                                    ],
+
+                                  ),
+                            )),
                           ),
                         ),
                       ),
@@ -108,7 +216,57 @@ class Search extends StatelessWidget {
                           child: Container(
                             width: 400,
                             height: 100,
-                            child: Text("Data"),
+                            child: Center(child: Container(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),//or 15.0
+                                      child: Container(
+                                        height: 80.0,
+                                        width: 80.0,
+                                        color: Colors.blue,
+                                        child: Image.asset('assets/images/new3.jpg',
+                                          fit: BoxFit.cover,),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Row(
+
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Text("hello"),
+                                            Text("eee"),
+                                          ],
+                                        ),
+
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.fromLTRB(100,10,0,0),
+                                              child: OutlineButton(
+                                                color: Colors.blue[300],
+                                                onPressed: () {
+                                                  print('Received click');
+                                                },
+                                                child: Text('Book'),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+
+                                  )
+                                ],
+
+                              ),
+                            )),
                           ),
                         ),
                       ),
@@ -128,7 +286,57 @@ class Search extends StatelessWidget {
                           child: Container(
                             width: 400,
                             height: 100,
-                            child: Text("Data"),
+                            child: Center(child: Container(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),//or 15.0
+                                      child: Container(
+                                        height: 80.0,
+                                        width: 80.0,
+                                        color: Colors.blue,
+                                        child: Image.asset('assets/images/new3.jpg',
+                                          fit: BoxFit.cover,),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Row(
+
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Text("hello"),
+                                            Text("eee"),
+                                          ],
+                                        ),
+
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.fromLTRB(100,10,0,0),
+                                              child: OutlineButton(
+                                                color: Colors.blue[300],
+                                                onPressed: () {
+                                                  print('Received click');
+                                                },
+                                                child: Text('Book'),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+
+                                  )
+                                ],
+
+                              ),
+                            )),
                           ),
                         ),
                       ),
@@ -148,7 +356,57 @@ class Search extends StatelessWidget {
                           child: Container(
                             width: 400,
                             height: 100,
-                            child: Text("Data"),
+                            child: Center(child: Container(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),//or 15.0
+                                      child: Container(
+                                        height: 80.0,
+                                        width: 80.0,
+                                        color: Colors.blue,
+                                        child: Image.asset('assets/images/new3.jpg',
+                                          fit: BoxFit.cover,),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Row(
+
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Text("hello"),
+                                            Text("eee"),
+                                          ],
+                                        ),
+
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.fromLTRB(100,10,0,0),
+                                              child: OutlineButton(
+                                                color: Colors.blue[300],
+                                                onPressed: () {
+                                                  print('Received click');
+                                                },
+                                                child: Text('Book'),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+
+                                  )
+                                ],
+
+                              ),
+                            )),
                           ),
                         ),
                       ),
@@ -168,7 +426,57 @@ class Search extends StatelessWidget {
                           child: Container(
                             width: 400,
                             height: 100,
-                            child: Text("Data"),
+                            child: Center(child: Container(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),//or 15.0
+                                      child: Container(
+                                        height: 80.0,
+                                        width: 80.0,
+                                        color: Colors.blue,
+                                        child: Image.asset('assets/images/new3.jpg',
+                                          fit: BoxFit.cover,),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Row(
+
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Text("hello"),
+                                            Text("eee"),
+                                          ],
+                                        ),
+
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.fromLTRB(100,10,0,0),
+                                              child: OutlineButton(
+                                                color: Colors.blue[300],
+                                                onPressed: () {
+                                                  print('Received click');
+                                                },
+                                                child: Text('Book'),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+
+                                  )
+                                ],
+
+                              ),
+                            )),
                           ),
                         ),
                       ),
