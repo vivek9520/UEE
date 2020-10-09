@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uee_project/HomePage/search.dart';
 
+import 'HomePage/discountDetails.dart';
 import 'HomePage/homePageMain.dart';
+import 'Service/LastBooking.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -12,6 +14,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,9 +80,8 @@ class MyApp extends StatelessWidget {
           ],
         ),
       ),
-      body: SizedBox(
-        child: Search(),
-      ),
+      body: DiscountDetails(),
+
     );
   }
 }

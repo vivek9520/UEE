@@ -10,6 +10,7 @@ class Search extends StatelessWidget {
   
   List <String> list = ["1","2","3"];
   final otpController = TextEditingController();
+  List <String> DeplaceList = ["Jaffna", "Colombo", "Vavuniya", "Mullaitivu"];
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +40,12 @@ class Search extends StatelessWidget {
                       child: DropdownSearch<String>(
                           mode: Mode.MENU,
                           showSelectedItem: true,
-                          items: ["Brazil", "Italia", "Tunisia", 'Canada',"Brazil", "Italia", "Tunisia", 'Canada'],
+                          items: DeplaceList,
                           label: "Depature",
                           hint: "country in menu mode",
                           popupItemDisabled: (String s) => s.startsWith('I'),
                           onChanged: print,
-                          selectedItem: "Brazil",
+                          selectedItem: "Colombo",
                       popupBackgroundColor: Colors.blue[300],),
                     ),
                   ),
@@ -59,13 +60,13 @@ class Search extends StatelessWidget {
                       child: DropdownSearch<String>(
                           mode: Mode.MENU,
                           showSelectedItem: true,
-                          items: ["Brazil", "Italia (Disabled)", "Tunisia", 'Canada'],
+                          items: DeplaceList,
                           label: "Menu mode",
                           hint: "country in menu mode",
                           popupItemDisabled: (String s) => s.startsWith('I'),
                           onChanged: print,
                           popupBackgroundColor: Colors.blue[300],
-                          selectedItem: "Brazil"),
+                          selectedItem: "Jaffana"),
 
                     ),
                   ),
@@ -88,7 +89,7 @@ class Search extends StatelessWidget {
                           },
                           child: Container(
                             width: 400,
-                            height: 100,
+                            height: 115,
                             child: Center(child: Container(
                                   child: Row(
                                     children: [
@@ -112,83 +113,97 @@ class Search extends StatelessWidget {
                                           children: [
                                             Column(
                                               children: [
-                                                Text("hello"), 
-                                                Text("eee"),
-                                              ],
-                                            ),
-
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.fromLTRB(100,10,0,0),
-                                                  child: OutlineButton(
-                                                    color: Colors.blue[300],
-                                                    onPressed: () {
-                                                        return Alert(
-                                                            context: context,
-                                                            title: "OTP",
-                                                            content: Column(
-                                                              children: <Widget>[
-                                                                TextField(
-                                                                  decoration: InputDecoration(
-                                                                    icon: Icon(Icons.phone),
-                                                                    labelText: 'Enter  OTP',
-                                                                  ),
-                                                                  keyboardType: TextInputType.number,
-                                                                  controller: otpController,
-                                                                ),
-                                                              ],
+                                                Text("Jaffna to Colombo", style: TextStyle(
+                                                  fontWeight: FontWeight.w900
+                                                ),),
+                                                Text("Rs.6500.00"),
+                                                OutlineButton(
+                                                  color: Colors.blue[300],
+                                                  onPressed: () {
+                                                    return Alert(
+                                                        context: context,
+                                                        title: "OTP",
+                                                        content: Column(
+                                                          children: <Widget>[
+                                                            TextField(
+                                                              decoration: InputDecoration(
+                                                                icon: Icon(Icons.phone),
+                                                                labelText: 'Enter  OTP',
+                                                              ),
+                                                              keyboardType: TextInputType.number,
+                                                              controller: otpController,
                                                             ),
-                                                            buttons: [
-                                                              DialogButton(
-                                                                onPressed: () {
-                                                                  print(otpController.text);
-                                                                  if(otpController.text.isEmpty){
-                                                                    Navigator.pop(context);
-                                                                      print("Empty");
-                                                                      return Alert(
-                                                                        context: context,
-                                                                        type: AlertType.error,
-                                                                        title: "RFLUTTER ALERT",
-                                                                        desc: "Flutter is more awesome with RFlutter Alert.",
-                                                                        buttons: [
-                                                                          DialogButton(
-                                                                            child: Text(
-                                                                              "COOL",
-                                                                              style: TextStyle(color: Colors.white, fontSize: 20),
-                                                                            ),
-                                                                            onPressed: () => Navigator.pop(context),
-                                                                            width: 120,
-                                                                          )
-                                                                        ],
+                                                          ],
+                                                        ),
+                                                        buttons: [
+                                                          DialogButton(
+                                                            onPressed: () {
+                                                              print(otpController.text);
+                                                              if(otpController.text.isEmpty){
+                                                                return     Alert(
+                                                                  context: context,
+                                                                  type: AlertType.warning,
+                                                                  title: "OTP Empty",
+                                                                  desc: "OTP Field Should be Filled.",
+                                                                  buttons: [
 
-                                                                      ).show();
+                                                                    DialogButton(
+                                                                      child: Text(
+                                                                        "OK",
+                                                                        style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                      ),
+                                                                      onPressed: () => Navigator.pop(context),
+                                                                      gradient: LinearGradient(colors: [
+                                                                        Color.fromRGBO(116, 116, 191, 1.0),
+                                                                        Color.fromRGBO(52, 138, 199, 1.0)
+                                                                      ]),
+                                                                    )
+                                                                  ],
+                                                                ).show();
+                                                              }
+                                                              else if(otpController.text != "1234"){
 
-                                                                  }
-                                                                  return Alert(
-                                                                    context: context,
-                                                                    title: "Success",
-                                                                    desc: "Booking Confirmed",
-                                                                    image: Image.asset("assets/images/sucess.webp"),
-                                                                  ).show();
-                                                                  Navigator.pop(context);
+                                                                return Alert(
+                                                                  context: context,
+                                                                  type: AlertType.error,
+                                                                  title: "Wrong OTP",
+                                                                  desc: "OTP is Wrong Try Again.",
+                                                                  buttons: [
+                                                                    DialogButton(
+                                                                      child: Text(
+                                                                        "OK",
+                                                                        style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                      ),
+                                                                      onPressed: () => Navigator.pop(context),
+                                                                      width: 120,
+                                                                    )
+                                                                  ],
 
-                                                                },
-                                                                child: Text(
+                                                                ).show();
+                                                              }
+                                                              else{
+                                                                Navigator.pop(context);
+                                                                return Alert(
+                                                                  context: context,
+                                                                  title: "Success",
+                                                                  desc: "Booking Confirmed",
+                                                                  image: Image.asset("assets/images/sucess.webp"),
+                                                                ).show();
+                                                              }
+                                                            },
+                                                            child: Text(
 
-                                                                  "Booking Confirmed",
-                                                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                                              "Booking Confirmed",
+                                                              style: TextStyle(color: Colors.white, fontSize: 20),
 
-                                                                ),
-                                                              )
-                                                            ]).show();
-                                                    },
-                                                    child: Text('Book'),
-                                                  ),
+                                                            ),
+                                                          )
+                                                        ]).show();
+                                                  },
+                                                  child: Text('Book'),
                                                 ),
                                               ],
-                                            )
+                                            ),
                                           ],
                                         ),
 
@@ -215,7 +230,7 @@ class Search extends StatelessWidget {
                           },
                           child: Container(
                             width: 400,
-                            height: 100,
+                            height: 115,
                             child: Center(child: Container(
                               child: Row(
                                 children: [
@@ -239,26 +254,97 @@ class Search extends StatelessWidget {
                                       children: [
                                         Column(
                                           children: [
-                                            Text("hello"),
-                                            Text("eee"),
-                                          ],
-                                        ),
+                                            Text("Jaffna to Colombo", style: TextStyle(
+                                                fontWeight: FontWeight.w900
+                                            ),),
+                                            Text("Rs.6500.00"),
+                                            OutlineButton(
+                                              color: Colors.blue[300],
+                                              onPressed: () {
+                                                return Alert(
+                                                    context: context,
+                                                    title: "OTP",
+                                                    content: Column(
+                                                      children: <Widget>[
+                                                        TextField(
+                                                          decoration: InputDecoration(
+                                                            icon: Icon(Icons.phone),
+                                                            labelText: 'Enter  OTP',
+                                                          ),
+                                                          keyboardType: TextInputType.number,
+                                                          controller: otpController,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    buttons: [
+                                                      DialogButton(
+                                                        onPressed: () {
+                                                          print(otpController.text);
+                                                          if(otpController.text.isEmpty){
+                                                            return     Alert(
+                                                              context: context,
+                                                              type: AlertType.warning,
+                                                              title: "OTP Empty",
+                                                              desc: "OTP Field Should be Filled.",
+                                                              buttons: [
 
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.end,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.fromLTRB(100,10,0,0),
-                                              child: OutlineButton(
-                                                color: Colors.blue[300],
-                                                onPressed: () {
-                                                  print('Received click');
-                                                },
-                                                child: Text('Book'),
-                                              ),
+                                                                DialogButton(
+                                                                  child: Text(
+                                                                    "OK",
+                                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                  ),
+                                                                  onPressed: () => Navigator.pop(context),
+                                                                  gradient: LinearGradient(colors: [
+                                                                    Color.fromRGBO(116, 116, 191, 1.0),
+                                                                    Color.fromRGBO(52, 138, 199, 1.0)
+                                                                  ]),
+                                                                )
+                                                              ],
+                                                            ).show();
+                                                          }
+                                                          else if(otpController.text != "1234"){
+
+                                                            return Alert(
+                                                              context: context,
+                                                              type: AlertType.error,
+                                                              title: "Wrong OTP",
+                                                              desc: "OTP is Wrong Try Again.",
+                                                              buttons: [
+                                                                DialogButton(
+                                                                  child: Text(
+                                                                    "OK",
+                                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                  ),
+                                                                  onPressed: () => Navigator.pop(context),
+                                                                  width: 120,
+                                                                )
+                                                              ],
+
+                                                            ).show();
+                                                          }
+                                                          else{
+                                                            Navigator.pop(context);
+                                                            return Alert(
+                                                              context: context,
+                                                              title: "Success",
+                                                              desc: "Booking Confirmed",
+                                                              image: Image.asset("assets/images/sucess.webp"),
+                                                            ).show();
+                                                          }
+                                                        },
+                                                        child: Text(
+
+                                                          "Booking Confirmed",
+                                                          style: TextStyle(color: Colors.white, fontSize: 20),
+
+                                                        ),
+                                                      )
+                                                    ]).show();
+                                              },
+                                              child: Text('Book'),
                                             ),
                                           ],
-                                        )
+                                        ),
                                       ],
                                     ),
 
@@ -285,7 +371,7 @@ class Search extends StatelessWidget {
                           },
                           child: Container(
                             width: 400,
-                            height: 100,
+                            height: 115,
                             child: Center(child: Container(
                               child: Row(
                                 children: [
@@ -309,26 +395,97 @@ class Search extends StatelessWidget {
                                       children: [
                                         Column(
                                           children: [
-                                            Text("hello"),
-                                            Text("eee"),
-                                          ],
-                                        ),
+                                            Text("Jaffna to Colombo", style: TextStyle(
+                                                fontWeight: FontWeight.w900
+                                            ),),
+                                            Text("Rs.6500.00"),
+                                            OutlineButton(
+                                              color: Colors.blue[300],
+                                              onPressed: () {
+                                                return Alert(
+                                                    context: context,
+                                                    title: "OTP",
+                                                    content: Column(
+                                                      children: <Widget>[
+                                                        TextField(
+                                                          decoration: InputDecoration(
+                                                            icon: Icon(Icons.phone),
+                                                            labelText: 'Enter  OTP',
+                                                          ),
+                                                          keyboardType: TextInputType.number,
+                                                          controller: otpController,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    buttons: [
+                                                      DialogButton(
+                                                        onPressed: () {
+                                                          print(otpController.text);
+                                                          if(otpController.text.isEmpty){
+                                                            return     Alert(
+                                                              context: context,
+                                                              type: AlertType.warning,
+                                                              title: "OTP Empty",
+                                                              desc: "OTP Field Should be Filled.",
+                                                              buttons: [
 
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.end,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.fromLTRB(100,10,0,0),
-                                              child: OutlineButton(
-                                                color: Colors.blue[300],
-                                                onPressed: () {
-                                                  print('Received click');
-                                                },
-                                                child: Text('Book'),
-                                              ),
+                                                                DialogButton(
+                                                                  child: Text(
+                                                                    "OK",
+                                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                  ),
+                                                                  onPressed: () => Navigator.pop(context),
+                                                                  gradient: LinearGradient(colors: [
+                                                                    Color.fromRGBO(116, 116, 191, 1.0),
+                                                                    Color.fromRGBO(52, 138, 199, 1.0)
+                                                                  ]),
+                                                                )
+                                                              ],
+                                                            ).show();
+                                                          }
+                                                          else if(otpController.text != "1234"){
+
+                                                            return Alert(
+                                                              context: context,
+                                                              type: AlertType.error,
+                                                              title: "Wrong OTP",
+                                                              desc: "OTP is Wrong Try Again.",
+                                                              buttons: [
+                                                                DialogButton(
+                                                                  child: Text(
+                                                                    "OK",
+                                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                  ),
+                                                                  onPressed: () => Navigator.pop(context),
+                                                                  width: 120,
+                                                                )
+                                                              ],
+
+                                                            ).show();
+                                                          }
+                                                          else{
+                                                            Navigator.pop(context);
+                                                            return Alert(
+                                                              context: context,
+                                                              title: "Success",
+                                                              desc: "Booking Confirmed",
+                                                              image: Image.asset("assets/images/sucess.webp"),
+                                                            ).show();
+                                                          }
+                                                        },
+                                                        child: Text(
+
+                                                          "Booking Confirmed",
+                                                          style: TextStyle(color: Colors.white, fontSize: 20),
+
+                                                        ),
+                                                      )
+                                                    ]).show();
+                                              },
+                                              child: Text('Book'),
                                             ),
                                           ],
-                                        )
+                                        ),
                                       ],
                                     ),
 
@@ -355,7 +512,7 @@ class Search extends StatelessWidget {
                           },
                           child: Container(
                             width: 400,
-                            height: 100,
+                            height: 115,
                             child: Center(child: Container(
                               child: Row(
                                 children: [
@@ -379,26 +536,97 @@ class Search extends StatelessWidget {
                                       children: [
                                         Column(
                                           children: [
-                                            Text("hello"),
-                                            Text("eee"),
-                                          ],
-                                        ),
+                                            Text("Jaffna to Colombo", style: TextStyle(
+                                                fontWeight: FontWeight.w900
+                                            ),),
+                                            Text("Rs.6500.00"),
+                                            OutlineButton(
+                                              color: Colors.blue[300],
+                                              onPressed: () {
+                                                return Alert(
+                                                    context: context,
+                                                    title: "OTP",
+                                                    content: Column(
+                                                      children: <Widget>[
+                                                        TextField(
+                                                          decoration: InputDecoration(
+                                                            icon: Icon(Icons.phone),
+                                                            labelText: 'Enter  OTP',
+                                                          ),
+                                                          keyboardType: TextInputType.number,
+                                                          controller: otpController,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    buttons: [
+                                                      DialogButton(
+                                                        onPressed: () {
+                                                          print(otpController.text);
+                                                          if(otpController.text.isEmpty){
+                                                            return     Alert(
+                                                              context: context,
+                                                              type: AlertType.warning,
+                                                              title: "OTP Empty",
+                                                              desc: "OTP Field Should be Filled.",
+                                                              buttons: [
 
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.end,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.fromLTRB(100,10,0,0),
-                                              child: OutlineButton(
-                                                color: Colors.blue[300],
-                                                onPressed: () {
-                                                  print('Received click');
-                                                },
-                                                child: Text('Book'),
-                                              ),
+                                                                DialogButton(
+                                                                  child: Text(
+                                                                    "OK",
+                                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                  ),
+                                                                  onPressed: () => Navigator.pop(context),
+                                                                  gradient: LinearGradient(colors: [
+                                                                    Color.fromRGBO(116, 116, 191, 1.0),
+                                                                    Color.fromRGBO(52, 138, 199, 1.0)
+                                                                  ]),
+                                                                )
+                                                              ],
+                                                            ).show();
+                                                          }
+                                                          else if(otpController.text != "1234"){
+
+                                                            return Alert(
+                                                              context: context,
+                                                              type: AlertType.error,
+                                                              title: "Wrong OTP",
+                                                              desc: "OTP is Wrong Try Again.",
+                                                              buttons: [
+                                                                DialogButton(
+                                                                  child: Text(
+                                                                    "OK",
+                                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                  ),
+                                                                  onPressed: () => Navigator.pop(context),
+                                                                  width: 120,
+                                                                )
+                                                              ],
+
+                                                            ).show();
+                                                          }
+                                                          else{
+                                                            Navigator.pop(context);
+                                                            return Alert(
+                                                              context: context,
+                                                              title: "Success",
+                                                              desc: "Booking Confirmed",
+                                                              image: Image.asset("assets/images/sucess.webp"),
+                                                            ).show();
+                                                          }
+                                                        },
+                                                        child: Text(
+
+                                                          "Booking Confirmed",
+                                                          style: TextStyle(color: Colors.white, fontSize: 20),
+
+                                                        ),
+                                                      )
+                                                    ]).show();
+                                              },
+                                              child: Text('Book'),
                                             ),
                                           ],
-                                        )
+                                        ),
                                       ],
                                     ),
 
@@ -425,7 +653,7 @@ class Search extends StatelessWidget {
                           },
                           child: Container(
                             width: 400,
-                            height: 100,
+                            height: 115,
                             child: Center(child: Container(
                               child: Row(
                                 children: [
@@ -449,26 +677,97 @@ class Search extends StatelessWidget {
                                       children: [
                                         Column(
                                           children: [
-                                            Text("hello"),
-                                            Text("eee"),
-                                          ],
-                                        ),
+                                            Text("Jaffna to Colombo", style: TextStyle(
+                                                fontWeight: FontWeight.w900
+                                            ),),
+                                            Text("Rs.6500.00"),
+                                            OutlineButton(
+                                              color: Colors.blue[300],
+                                              onPressed: () {
+                                                return Alert(
+                                                    context: context,
+                                                    title: "OTP",
+                                                    content: Column(
+                                                      children: <Widget>[
+                                                        TextField(
+                                                          decoration: InputDecoration(
+                                                            icon: Icon(Icons.phone),
+                                                            labelText: 'Enter  OTP',
+                                                          ),
+                                                          keyboardType: TextInputType.number,
+                                                          controller: otpController,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    buttons: [
+                                                      DialogButton(
+                                                        onPressed: () {
+                                                          print(otpController.text);
+                                                          if(otpController.text.isEmpty){
+                                                            return     Alert(
+                                                              context: context,
+                                                              type: AlertType.warning,
+                                                              title: "OTP Empty",
+                                                              desc: "OTP Field Should be Filled.",
+                                                              buttons: [
 
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.end,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.fromLTRB(100,10,0,0),
-                                              child: OutlineButton(
-                                                color: Colors.blue[300],
-                                                onPressed: () {
-                                                  print('Received click');
-                                                },
-                                                child: Text('Book'),
-                                              ),
+                                                                DialogButton(
+                                                                  child: Text(
+                                                                    "OK",
+                                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                  ),
+                                                                  onPressed: () => Navigator.pop(context),
+                                                                  gradient: LinearGradient(colors: [
+                                                                    Color.fromRGBO(116, 116, 191, 1.0),
+                                                                    Color.fromRGBO(52, 138, 199, 1.0)
+                                                                  ]),
+                                                                )
+                                                              ],
+                                                            ).show();
+                                                          }
+                                                          else if(otpController.text != "1234"){
+
+                                                            return Alert(
+                                                              context: context,
+                                                              type: AlertType.error,
+                                                              title: "Wrong OTP",
+                                                              desc: "OTP is Wrong Try Again.",
+                                                              buttons: [
+                                                                DialogButton(
+                                                                  child: Text(
+                                                                    "OK",
+                                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                  ),
+                                                                  onPressed: () => Navigator.pop(context),
+                                                                  width: 120,
+                                                                )
+                                                              ],
+
+                                                            ).show();
+                                                          }
+                                                          else{
+                                                            Navigator.pop(context);
+                                                            return Alert(
+                                                              context: context,
+                                                              title: "Success",
+                                                              desc: "Booking Confirmed",
+                                                              image: Image.asset("assets/images/sucess.webp"),
+                                                            ).show();
+                                                          }
+                                                        },
+                                                        child: Text(
+
+                                                          "Booking Confirmed",
+                                                          style: TextStyle(color: Colors.white, fontSize: 20),
+
+                                                        ),
+                                                      )
+                                                    ]).show();
+                                              },
+                                              child: Text('Book'),
                                             ),
                                           ],
-                                        )
+                                        ),
                                       ],
                                     ),
 
