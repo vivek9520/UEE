@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:uee_project/Service/LastBooking.dart';
+import 'package:uee_project/Service/comments.dart';
 
 class DiscountDetails extends StatefulWidget {
   @override
@@ -8,11 +9,14 @@ class DiscountDetails extends StatefulWidget {
 }
 
 class _DiscountDetailsState extends State<DiscountDetails> {
-  List <LastBooking> lastBooking =[
-    LastBooking("t.jpg", "Vavuniya", 20000),
-    LastBooking("tt.jpg", "Jaffna", 40000),
-    LastBooking("k.jpeg", "Mullaitivu", 50000),
-    LastBooking("tt.jpg", "Jaffna", 40000),
+  List <Comments> comments =[
+    Comments( "Mr.Nimalan","Good Service", "b.png"),
+    Comments( "Mr.Thenesh","Best Service", "b.jpg"),
+    Comments( "Mis.Mohan","Good Price", "bb2.jpg"),
+    Comments( "Miss.Vinothini","Confortable Service", "gg.png"),
+    Comments( "Mr.Surenthiran","Good Service", "gg2.png"),
+
+
   ];
 
   @override
@@ -234,27 +238,33 @@ class _DiscountDetailsState extends State<DiscountDetails> {
                          padding: const EdgeInsets.all(8.0),
                          child: ListView.builder(
                            itemExtent: 90.0,
-                           itemCount: lastBooking.length,
+                           itemCount: comments.length,
                            itemBuilder: (context,index){
                              return Card(
                                child: ListTile(
                                  onTap: (){},
-                                 title: Text(lastBooking[index].name),
-                                 subtitle: Text(lastBooking[index].amount.toString()),
-                                 tileColor: Colors.blue[200],
-                                 leading: CircleAvatar(
-                                   radius: 30,
-                                   backgroundColor: Colors.red,
-                                   child: CircleAvatar(
-                                     radius: 50,
-                                     backgroundImage: AssetImage('assets/images/${lastBooking[index].url}'),
-                                   ),
-
+                                 title: Text(comments[index].name,
+                                 style: TextStyle(
+                                   fontWeight: FontWeight.w700,
+                                   color: Colors.blue[900]
+                                 ),),
+                                 subtitle: Row(
+                                   children: [
+                                     Padding(
+                                       padding: const EdgeInsets.fromLTRB(100.0,6,0,0),
+                                       child: Text(comments[index].comment.toString()),
+                                     ),
+                                   ],
                                  ),
-
-
-                               ),
-                             );
+                                 tileColor: Colors.blue[200],
+                                 leading: ClipRRect(
+                                   borderRadius: BorderRadius.all(Radius.circular(10.0)),//add border radius here
+                                   child: Image.asset('assets/images/${comments[index].img}',
+                                   height: 150,
+                                   width: 100,
+                                   fit: BoxFit.fill,),//add image location here
+                                 ),
+                             ));
                            },
                          ),
                        ),

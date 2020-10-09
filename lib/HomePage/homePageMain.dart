@@ -52,7 +52,7 @@ class HomeMain extends StatelessWidget {
       body:Column(
         children: [
           SizedBox(
-            height: 170,
+            height: 200,
             child: Silider(),
           ),
           SizedBox(
@@ -185,7 +185,7 @@ class HomeMain extends StatelessWidget {
           ),
           SingleChildScrollView(
             child: SizedBox(
-              height: 10,
+              height: 90,
               child: Scaffold(
                 backgroundColor: Colors.blue[50],
                 body: Padding(
