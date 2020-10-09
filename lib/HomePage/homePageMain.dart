@@ -185,7 +185,7 @@ class HomeMain extends StatelessWidget {
           ),
           SingleChildScrollView(
             child: SizedBox(
-              height: 110,
+              height: 10,
               child: Scaffold(
                 backgroundColor: Colors.blue[50],
                 body: Padding(
