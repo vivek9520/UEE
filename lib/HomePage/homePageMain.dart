@@ -1,8 +1,11 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobile_carousel/carousel_arrow.dart';
 
 import 'package:uee_project/HomePage/Silider.dart';
 import 'package:flutter_mobile_carousel/carousel.dart';
+import 'package:uee_project/HomePage/discountDetails.dart';
 import 'package:uee_project/Service/LastBooking.dart';
 import 'package:uee_project/Service/discount.dart';
 import 'package:uee_project/Service/newPlan.dart';
@@ -19,18 +22,18 @@ class HomeMain extends StatelessWidget {
   ];
 
   List <NewPlan> newPlan =[
-    NewPlan("new3.jpg", "Vavuniya","Jaffna To Colombo", 20000.0,200),
-    NewPlan("new3.jpg", "Vavuniya","Jaffna To Colombo", 20000.0,200),
-    NewPlan("new3.jpg", "Vavuniya","Jaffna To Colombo", 20000.0,200),
-    NewPlan("new3.jpg", "Vavuniya","Jaffna To Colombo", 20000.0,200),
+    NewPlan("bus3.jpg", "Vavuniya","Jaffna To Colombo", 20000.0,200),
+    NewPlan("car3.jpg", "Galle","Jaffna To Colombo", 20000.0,200),
+    NewPlan("van2.jpg", "Kandy","Jaffna To Colombo", 20000.0,200),
+    NewPlan("bus1.png", "Nuwareliya","Jaffna To Colombo", 20000.0,200),
 
   ];
 
   List <Discount> discount =[
-    Discount("dis3.jpg", "Vavuniya","Jaffna To Colombo", 20000.0,200),
-    Discount("dis3.jpg", "Vavuniya","Jaffna To Colombo", 20000.0,200),
-    Discount("dis3.jpg", "Vavuniya","Jaffna To Colombo", 20000.0,200),
-    Discount("dis3.jpg", "Vavuniya","Jaffna To Colombo", 20000.0,200),
+    Discount("car2.webp", "Vavuniya 10%","Jaffna To Colombo", 20000.0,200),
+    Discount("van1.jpg", "Colombo 5%","Jaffna To Colombo", 20000.0,200),
+    Discount("car4.jpeg", "Mullaitivu 6%","Jaffna To Colombo", 20000.0,200),
+    Discount("car3.jpg", "Vavuniya 4%","Jaffna To Colombo", 20000.0,200),
 
   ];
 
@@ -153,8 +156,14 @@ class HomeMain extends StatelessWidget {
             onDragStart: (DragStartDetails details) {},
             onDrag: (DragUpdateDetails details) {},
             onDragEnd: (DragEndDetails details) {},
-            children: this.discount.map((Discount itemText) {
-              return _buildProgrammCardDiscount(itemText);
+            children: this.discount.map((Discount itemText ) {
+              return InkWell(
+                onTap: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DiscountDetails()));
+                },
+                  child: _buildProgrammCardDiscount(itemText));
             }).toList(),
           ),
           SizedBox(
@@ -233,6 +242,8 @@ Widget _buildProgrammCard(LastBooking l) {
 
       child: Image.asset(
         'assets/images/${l.url}',
+        width: 50,
+        height: 30,
         fit: BoxFit.cover,
       ),
       shape: RoundedRectangleBorder(
@@ -264,7 +275,7 @@ Widget _buildProgrammCardNewPlan(NewPlan l) {
           margin: EdgeInsets.all(10),
 
         ),
-        Text("Heelo")
+        Text(l.planName)
       ],
     ),
 
@@ -274,21 +285,23 @@ Widget _buildProgrammCardNewPlan(NewPlan l) {
 Widget _buildProgrammCardDiscount(Discount l) {
   return Container(
     height: 250,
-    
     child: Column(
       children: [
-        Card(
+        InkWell(
+          onTap: (){
+          },
+          child: Card(
+            child: Image.asset(
+              'assets/images/${l.url}',
+              fit: BoxFit.cover,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            elevation: 5,
+            margin: EdgeInsets.all(10),
 
-          child: Image.asset(
-            'assets/images/${l.url}',
-            fit: BoxFit.cover,
           ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          elevation: 5,
-          margin: EdgeInsets.all(10),
-
         ),
         Text(l.planName)
       ],
