@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:uee_project/HomePage/search.dart';
+import 'package:uee_project/Service/newPlan.dart';
 
 import 'HomePage/discountDetails.dart';
 import 'HomePage/homePageMain.dart';
+import 'HomePage/newPlanDetails.dart';
 import 'Service/LastBooking.dart';
 
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: MyApp(),
+   initialRoute: ('/'),
+    routes: {
+      '/':(context)=>MyApp(),
+      'search':(context)=>Search(),
+    },
+
+
   ));
 }
 
@@ -43,6 +51,11 @@ class MyApp extends StatelessWidget {
                 ),
             ),
             ListTile(
+              onTap: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeMain()));
+              },
               title: Text("Home"),
               leading: Icon(Icons.home),
             ),
@@ -50,6 +63,9 @@ class MyApp extends StatelessWidget {
               height: 1,
             ),
             ListTile(
+              onTap: (){
+                Navigator.pushNamed(context, 'search');
+              },
               title: Text("Search"),
               leading: Icon(Icons.search),
             ),
@@ -80,8 +96,8 @@ class MyApp extends StatelessWidget {
           ],
         ),
       ),
-      body: DiscountDetails(),
 
+  body: HomeMain(),
     );
   }
 }

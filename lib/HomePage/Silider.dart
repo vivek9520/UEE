@@ -9,6 +9,8 @@ final List<String> imgList = [
   'assets/images/s.jpg'
 ];
 
+final List <String> imgname =["Jaffna","Vaviniya","Mulliyawalai","Colombo"];
+
 class Silider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,7 @@ final List<Widget> imageSliders = imgList.map((item) => Container(
                 ),
                 padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 child: Text(
-                  '${imgList.indexOf(item)} image',
+                  '${imgname[imgList.indexOf(item)]} ',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20.0,
