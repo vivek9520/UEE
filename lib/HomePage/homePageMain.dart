@@ -10,6 +10,8 @@ import 'package:uee_project/Service/LastBooking.dart';
 import 'package:uee_project/Service/discount.dart';
 import 'package:uee_project/Service/newPlan.dart';
 
+import 'newPlanDetails.dart';
+
 class HomeMain extends StatelessWidget {
 
   List<String> items =["1","2","3","4"];
@@ -109,7 +111,15 @@ class HomeMain extends StatelessWidget {
             onDrag: (DragUpdateDetails details) {},
             onDragEnd: (DragEndDetails details) {},
             children: this.newPlan.map((NewPlan itemText) {
-              return _buildProgrammCardNewPlan(itemText);
+              return InkWell(
+                onTap: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => NewPlanDetails()));
+                },
+                child:  _buildProgrammCardNewPlan(itemText)
+              );
+                _buildProgrammCardNewPlan(itemText);
             }).toList(),
           ),
           SizedBox(
@@ -163,7 +173,8 @@ class HomeMain extends StatelessWidget {
                       context,
                       MaterialPageRoute(builder: (context) => DiscountDetails()));
                 },
-                  child: _buildProgrammCardDiscount(itemText));
+                  child: _buildProgrammCardDiscount(itemText)
+              );
             }).toList(),
           ),
           SizedBox(

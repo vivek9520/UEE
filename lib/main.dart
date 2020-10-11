@@ -10,7 +10,11 @@ import 'Service/LastBooking.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: MyApp(),
+   initialRoute: ('/'),
+    routes: {
+      '/':(context)=>MyApp(),
+      'search':(context)=>Search(),
+    },
 
 
   ));
@@ -60,9 +64,7 @@ class MyApp extends StatelessWidget {
             ),
             ListTile(
               onTap: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Search()));
+                Navigator.pushNamed(context, 'search');
               },
               title: Text("Search"),
               leading: Icon(Icons.search),
@@ -94,8 +96,8 @@ class MyApp extends StatelessWidget {
           ],
         ),
       ),
-      body: Search(),
 
+  body: HomeMain(),
     );
   }
 }

@@ -3,6 +3,17 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:uee_project/Service/LastBooking.dart';
 import 'package:uee_project/Service/comments.dart';
 
+import 'package:flutter/material.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:uee_project/Service/LastBooking.dart';
+import 'package:uee_project/Service/comments.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:slimy_card/slimy_card.dart';
+import 'package:expansion_card/expansion_card.dart';
+import 'package:sliding_card/sliding_card.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:uee_project/Service/packege.dart';
+
 
 class NewPlanDetails extends StatefulWidget {
   @override
@@ -20,6 +31,7 @@ List <Comments> comments =[
 ];
 
 class _NewPlanDetailsState extends State<NewPlanDetails> {
+  final otpController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +61,7 @@ class _NewPlanDetailsState extends State<NewPlanDetails> {
                           borderRadius: new BorderRadius.circular(10.0),
                           child: Image(
                             fit: BoxFit.fill,
-                            image: AssetImage('assets/images/t.jpg'),
+                            image: AssetImage('assets/images/imgD1.jpeg'),
                             width: 150.0,
                             height: 100.0,
                           ),
@@ -64,7 +76,7 @@ class _NewPlanDetailsState extends State<NewPlanDetails> {
                                   borderRadius: new BorderRadius.circular(10.0),
                                   child: Image(
                                     fit: BoxFit.fill,
-                                    image: AssetImage('assets/images/fort.jpg'),
+                                    image: AssetImage('assets/images/imgD2.jpeg'),
                                     width: 72.0,
                                     height: 50.0,
                                   ),
@@ -76,7 +88,7 @@ class _NewPlanDetailsState extends State<NewPlanDetails> {
                                   borderRadius: new BorderRadius.circular(10.0),
                                   child: Image(
                                     fit: BoxFit.fill,
-                                    image: AssetImage('assets/images/tt.jpg'),
+                                    image: AssetImage('assets/images/imgD.jpeg'),
                                     width: 72.0,
                                     height: 50.0,
                                   ),
@@ -172,6 +184,100 @@ class _NewPlanDetailsState extends State<NewPlanDetails> {
             height: 3,
             color: Colors.blue,
           ),
+          DialogButton(
+            child: Text(
+              "Book",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: ()  {{
+              return Alert(
+                  context: context,
+                  title: "OTP",
+                  content: Column(
+                    children: <Widget>[
+                      TextField(
+                        decoration: InputDecoration(
+                          icon: Icon(Icons.phone),
+                          labelText: 'Enter  OTP',
+                        ),
+                        keyboardType: TextInputType.number,
+                        controller: otpController,
+                      ),
+                    ],
+                  ),
+                  buttons: [
+                    DialogButton(
+                      onPressed: () {
+                        print(otpController.text);
+                        if(otpController.text.isEmpty){
+                          return     Alert(
+                            context: context,
+                            type: AlertType.warning,
+                            title: "OTP Empty",
+                            desc: "OTP Field Should be Filled.",
+                            buttons: [
+
+                              DialogButton(
+                                child: Text(
+                                  "OK",
+                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                ),
+                                onPressed: () => Navigator.pop(context),
+                                gradient: LinearGradient(colors: [
+                                  Color.fromRGBO(116, 116, 191, 1.0),
+                                  Color.fromRGBO(52, 138, 199, 1.0)
+                                ]),
+                              )
+                            ],
+                          ).show();
+                        }
+                        else if(otpController.text != "1234"){
+
+                          return Alert(
+                            context: context,
+                            type: AlertType.error,
+                            title: "Wrong OTP",
+                            desc: "OTP is Wrong Try Again.",
+                            buttons: [
+                              DialogButton(
+                                child: Text(
+                                  "OK",
+                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                ),
+                                onPressed: () => Navigator.pop(context),
+                                width: 120,
+                              )
+                            ],
+
+                          ).show();
+                        }
+                        else{
+                          Navigator.pop(context);
+                          return Alert(
+                            context: context,
+                            title: "Success",
+                            desc: "Booking Confirmed",
+                            image: Image.asset("assets/images/sucess.webp"),
+                          ).show();
+                        }
+                      },
+                      child: Text(
+
+                        "Booking Confirmed",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+
+                      ),
+                    )
+                  ]).show();
+            }
+
+            },
+            gradient: LinearGradient(colors: [
+              Color.fromRGBO(116, 116, 191, 1.0),
+              Color.fromRGBO(52, 138, 199, 1.0)
+            ]),
+          ),
+
           SizedBox(
             height: 500,
             child: Scaffold(

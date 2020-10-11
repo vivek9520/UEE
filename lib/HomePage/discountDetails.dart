@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:uee_project/Service/LastBooking.dart';
 import 'package:uee_project/Service/comments.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:slimy_card/slimy_card.dart';
+import 'package:expansion_card/expansion_card.dart';
+import 'package:sliding_card/sliding_card.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:uee_project/Service/packege.dart';
 
 class DiscountDetails extends StatefulWidget {
   @override
@@ -22,6 +28,9 @@ class _DiscountDetailsState extends State<DiscountDetails> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+
+    final otpController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Discount Pack", style: TextStyle(
@@ -166,6 +175,99 @@ class _DiscountDetailsState extends State<DiscountDetails> {
                 ),
               )
             ],
+          ),
+          DialogButton(
+            child: Text(
+              "Book",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: ()  {{
+              return Alert(
+                  context: context,
+                  title: "OTP",
+                  content: Column(
+                    children: <Widget>[
+                      TextField(
+                        decoration: InputDecoration(
+                          icon: Icon(Icons.phone),
+                          labelText: 'Enter  OTP',
+                        ),
+                        keyboardType: TextInputType.number,
+                        controller: otpController,
+                      ),
+                    ],
+                  ),
+                  buttons: [
+                    DialogButton(
+                      onPressed: () {
+                        print(otpController.text);
+                        if(otpController.text.isEmpty){
+                          return     Alert(
+                            context: context,
+                            type: AlertType.warning,
+                            title: "OTP Empty",
+                            desc: "OTP Field Should be Filled.",
+                            buttons: [
+
+                              DialogButton(
+                                child: Text(
+                                  "OK",
+                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                ),
+                                onPressed: () => Navigator.pop(context),
+                                gradient: LinearGradient(colors: [
+                                  Color.fromRGBO(116, 116, 191, 1.0),
+                                  Color.fromRGBO(52, 138, 199, 1.0)
+                                ]),
+                              )
+                            ],
+                          ).show();
+                        }
+                        else if(otpController.text != "1234"){
+
+                          return Alert(
+                            context: context,
+                            type: AlertType.error,
+                            title: "Wrong OTP",
+                            desc: "OTP is Wrong Try Again.",
+                            buttons: [
+                              DialogButton(
+                                child: Text(
+                                  "OK",
+                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                ),
+                                onPressed: () => Navigator.pop(context),
+                                width: 120,
+                              )
+                            ],
+
+                          ).show();
+                        }
+                        else{
+                          Navigator.pop(context);
+                          return Alert(
+                            context: context,
+                            title: "Success",
+                            desc: "Booking Confirmed",
+                            image: Image.asset("assets/images/sucess.webp"),
+                          ).show();
+                        }
+                      },
+                      child: Text(
+
+                        "Booking Confirmed",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+
+                      ),
+                    )
+                  ]).show();
+            }
+
+            },
+            gradient: LinearGradient(colors: [
+              Color.fromRGBO(116, 116, 191, 1.0),
+              Color.fromRGBO(52, 138, 199, 1.0)
+            ]),
           ),
          Divider(
            height: 3,
