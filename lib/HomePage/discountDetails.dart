@@ -56,7 +56,7 @@ class _DiscountDetailsState extends State<DiscountDetails> {
                           borderRadius: new BorderRadius.circular(10.0),
                           child: Image(
                             fit: BoxFit.fill,
-                            image: AssetImage('assets/images/t.jpg'),
+                            image: AssetImage('assets/images/imgD1.jpeg'),
                             width: 150.0,
                             height: 100.0,
                           ),
@@ -252,6 +252,8 @@ class _DiscountDetailsState extends State<DiscountDetails> {
                             image: Image.asset("assets/images/sucess.webp"),
                           ).show();
                         }
+
+
                       },
                       child: Text(
 
