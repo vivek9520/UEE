@@ -17,10 +17,10 @@ class HomeMain extends StatelessWidget {
   List<String> items =["1","2","3","4"];
 
   List <LastBooking> lastBooking =[
-    LastBooking("t.jpg", "Vavuniya", 20000),
-    LastBooking("tt.jpg", "Jaffna", 40000),
-    LastBooking("k.jpeg", "Mullaitivu", 50000),
-    LastBooking("tt.jpg", "Jaffna", 40000),
+    LastBooking("van1.jpg", "Vavuniya", 20000),
+    LastBooking("car1.jpg", "Jaffna", 40000),
+    LastBooking("bus3.jpg", "Mullaitivu", 50000),
+    LastBooking("van2.jpg", "Jaffna", 40000),
   ];
 
   List <NewPlan> newPlan =[
@@ -166,15 +166,16 @@ class HomeMain extends StatelessWidget {
             onDragStart: (DragStartDetails details) {},
             onDrag: (DragUpdateDetails details) {},
             onDragEnd: (DragEndDetails details) {},
-            children: this.discount.map((Discount itemText ) {
+            children: this.discount.map((Discount itemText) {
               return InkWell(
-                onTap: (){
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => DiscountDetails()));
-                },
-                  child: _buildProgrammCardDiscount(itemText)
+                  onTap: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DiscountDetails()));
+                  },
+                  child:  _buildProgrammCardDiscount(itemText)
               );
+              _buildProgrammCardDiscount(itemText);
             }).toList(),
           ),
           SizedBox(
